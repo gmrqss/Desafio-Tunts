@@ -41,12 +41,11 @@ async function gsrun(cl){
     console.log(average);
 
     console.log('Getting test results.')
-    let again = 'Reprovado por Falta';
     let max = 60/4;
     situation = [];
     for(let n = 0; n<24; n++){
         if(max<Number(array[n][2])){
-            situation[n] = again;
+            situation[n] = 'Reprovado por Falta';
         } else if(average[n] < 50){
             situation[n] = 'Reprovado por Nota';
         }else if(50 <= average[n] && average[n] < 70){
