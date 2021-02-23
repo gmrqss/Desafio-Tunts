@@ -1,6 +1,7 @@
 # Desafio-Tunts - Guilherme Marques Machado
 
 [Português](#pt)
+
 [English](#us)
 
 ## <a name=“pt”><a/> Atualizações
