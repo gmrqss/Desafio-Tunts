@@ -34,11 +34,11 @@ async function gsrun(cl){
     let array = data.data.values;
 
     console.log('Calculating the average of students.')
-    media = [];
+    average = [];
     for(let n = 0; n<24; n++){
-        media[n] = (parseInt((Number(array[n][3]) + Number(array[n][4]) + Number(array[n][5]))/3));
+        average[n] = (parseInt((Number(array[n][3]) + Number(array[n][4]) + Number(array[n][5]))/3));
     };
-    console.log(media);
+    console.log(average);
 
     console.log('Getting test results.')
     let again = 'Reprovado por Falta';
@@ -47,11 +47,11 @@ async function gsrun(cl){
     for(let n = 0; n<24; n++){
         if(max<Number(array[n][2])){
             situation[n] = again;
-        } else if(media[n] < 50){
+        } else if(average[n] < 50){
             situation[n] = 'Reprovado por Nota';
-        }else if(50 <= media[n] && media[n] < 70){
+        }else if(50 <= average[n] && average[n] < 70){
             situation[n] = 'Exame Final';
-        }else if(media[n] >= 70){
+        }else if(average[n] >= 70){
             situation[n] = 'Aprovado';
         }
     }
@@ -61,7 +61,7 @@ async function gsrun(cl){
     naf = [];
     for(let n = 0; n<24; n++){
         if(situation[n] == 'Exame Final'){
-            naf[n] = 100 - media[n];
+            naf[n] = 100 - average[n];
         }else if(situation[n] != 'Exame Final'){
             naf[n] = '0';
         }
