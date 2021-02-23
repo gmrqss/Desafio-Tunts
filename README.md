@@ -1,6 +1,9 @@
 # Desafio-Tunts - Guilherme Marques Machado
 
-## Updates
+[Português](#pt)
+[English](#us)
+
+## <a name=“pt”><a/> Atualizações
 
 Agora a planilha é responsiva. Você pode estar alterando o número de aulas do semestre e acrescentando alunos. Basta rodar a aplicação novamente e as alterações serão feitas.
 
@@ -18,9 +21,7 @@ npm install
 npm start
 ```
 
-========
-
-## Updates
+## <a name=“us”><a/> Updates
 
 Now the spreadsheet is responsive. You can change the number of semester's classes and adding new students. All you need is run the app again and the changes will be done.
 
