@@ -29,21 +29,29 @@ async function gsrun(cl){
         range: 'engenharia_de_software!A4:F'
     };
 
+    const school_days = {
+        spreadsheetId: '1InUcO6QBF2PZ2jUTub8zaqVOVbWSo2mr_emeadSGcYQ',
+        range: 'engenharia_de_software!A2:H2'
+    };    
+
+    let num_string = await gsapi.spreadsheets.values.get(school_days);
+    let num = parseInt(num_string.data.values[0][0].match(/\d/g).join(''));
     let data = await gsapi.spreadsheets.values.get(opt);
     console.log('Getting data from the sheet.');
     let array = data.data.values;
+    let size = array.length;
 
     console.log('Calculating the average of students.')
     average = [];
-    for(let n = 0; n<24; n++){
+    for(let n = 0; n<size; n++){
         average[n] = (parseInt((Number(array[n][3]) + Number(array[n][4]) + Number(array[n][5]))/3));
     };
     console.log(average);
 
     console.log('Getting test results.')
-    let max = 60/4;
+    let max = num/4;
     situation = [];
-    for(let n = 0; n<24; n++){
+    for(let n = 0; n<size; n++){
         if(max<Number(array[n][2])){
             situation[n] = 'Reprovado por Falta';
         } else if(average[n] < 50){
@@ -58,7 +66,7 @@ async function gsrun(cl){
 
     console.log('Calculating final grades.')
     naf = [];
-    for(let n = 0; n<24; n++){
+    for(let n = 0; n<size; n++){
         if(situation[n] == 'Exame Final'){
             naf[n] = 100 - average[n];
         }else if(situation[n] != 'Exame Final'){
@@ -69,10 +77,10 @@ async function gsrun(cl){
 
     console.log('Results obtained.')
     let final_values = []; 
-    for(n=0;n<24;n++){
+    for(n=0;n<size;n++){
         final_values[n] = [];
     };
-    for (let n = 0; n < 24; n++){
+    for (let n = 0; n < size; n++){
         final_values[n][0] = situation[n];
         final_values[n][1] = naf[n];
     };
@@ -87,6 +95,5 @@ async function gsrun(cl){
 };
 
     let res = await gsapi.spreadsheets.values.update(upt);
-    
 
 }
